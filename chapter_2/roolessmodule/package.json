@@ -1,0 +1,11 @@
+{
+  "name": "roolessmodule",
+  "version": "1.0.0",
+  "description": "Holla, soy rooless. Esto es mi uno module en NPM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Helena Siniakova",
+  "license": "ISC"
+}
