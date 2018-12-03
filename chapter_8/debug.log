@@ -1,0 +1,12 @@
+{"level":"info","message":"Got request"}
+{"message":"Echo: TEST","level":"debug"}
+{"level":"info","message":"Got request"}
+{"message":"Echo: log-me-please","level":"debug"}
+{"level":"info","message":"Got request"}
+{"message":"Echo: log-me-please","level":"debug"}
+{"level":"info","message":"Got request"}
+{"message":"Echo: log-me-please","level":"debug"}
+{"level":"info","message":"Got request"}
+{"message":"Echo: log-me-please","level":"debug"}
+{"level":"info","message":"Got request"}
+{"message":"Unkown URL","level":"error"}
