@@ -1,12 +1,25 @@
 // var createError = require('http-errors');
 const express = require('express');
+const path = require('path');
+const config = require('./config');
+const log = require('./libs/log')(module);
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var hbs  = require('express-handlebars');
 
 const app = express();
-const port = 9000;
+const port = config.get('port');
 
-app.set('port', port)
+app.set('port',port)
+app.set('views', path.join(__dirname, 'views'));
+app.engine('.hbs', hbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
-const myLogger = function (req, res, next) {
+app.use(logger('dev')); 
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+/* const myLogger = function (req, res, next) {
   console.log('LOGGED')
   next()
 }
@@ -21,7 +34,7 @@ app.use(requestTime)
 app.use(function (req, res, next) {
   console.log('Time:', Date.now())
   next()
-})
+}) */
 /* app.use('/user/:id', function (req, res, next) {
   console.log('Request Type:', req.method)
   next()
@@ -49,7 +62,7 @@ app.get('/user/:id', function (req, res, next) {
   res.end(req.params.id)
 }) */
 
-app.get('/user/:id', function (req, res, next) {
+/* app.get('/user/:id', function (req, res, next) {
   // if the user ID is 0, skip to the next route
   if (req.params.id === '0') next('route')
   // otherwise pass the control to the next middleware function in this stack
@@ -62,22 +75,36 @@ app.get('/user/:id', function (req, res, next) {
 // handler for the /user/:id path, which sends a special response
 app.get('/user/:id', function (req, res, next) {
   res.send('special')
-})
+})*/
 
 app.get('/', (req, res) => {
-  let responseText = 'Hello World!<br>'
-  responseText += '<small>Requested at: ' + req.requestTime + '</small>'
-  res.send(responseText)
-});
+  /* let responseText = 'Hello World!<br>'
+   responseText += '<small>Requested at: ' + req.requestTime + '</small>' 
+  res.send(responseText)*/
+  res.render("index", {
+    title: 'Madera Arte!',
+    layout: 'layout'
+  });
+}); 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.get('/canvas', (req, res) => {
+  /* let responseText = 'Hello World!<br>'
+   responseText += '<small>Requested at: ' + req.requestTime + '</small>' 
+  res.send(responseText)*/
+  res.render("canvas", {
+    /* title: 'Madera Arte!', */
+    layout: 'layout'
+  });
+}); 
+
+app.listen(port, () => log.info(`Example app listening on port ${port}!`));
 
 
 
 /**
- path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+ 
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -85,14 +112,13 @@ var usersRouter = require('./routes/users');
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
