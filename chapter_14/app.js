@@ -83,6 +83,7 @@ app.get('/', (req, res) => {
   res.send(responseText)*/
   res.render("index", {
     title: 'Madera Arte!',
+    'logo-name': 'Madera-Arte',
     layout: 'layout'
   });
 }); 

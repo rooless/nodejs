@@ -1,8 +1,86 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background-color: #d0dcda;
+  min-height: 100%;
 }
 
 a {
   color: #00B7FF;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+}
+
+.menu__button{
+  background: #f2f6f8; /* Цвет фона */
+    border: 1px solid #fff; /* Параметры рамки */
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота */
+    border-radius: 30px;
+}
+
+.menu__button button {
+  display: inline-block;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: none transparent;
+  color: inherit;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.menu__button-icon {
+  position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 3;
+    margin: 10px;
+}
+
+.icon-wrap::before {
+  content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    display: block;
+    border-top: 2px solid #101010;
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.4,0,0,1);
+    transition: -webkit-transform .3s cubic-bezier(.4,0,0,1);
+    transition: transform .3s cubic-bezier(.4,0,0,1);
+    transition: transform .3s cubic-bezier(.4,0,0,1),-webkit-transform .3s cubic-bezier(.4,0,0,1);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.icon-wrap::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: block;
+  border-top: 2px solid #101010;
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.4,0,0,1);
+  transition: -webkit-transform .3s cubic-bezier(.4,0,0,1);
+  transition: transform .3s cubic-bezier(.4,0,0,1);
+  transition: transform .3s cubic-bezier(.4,0,0,1),-webkit-transform .3s cubic-bezier(.4,0,0,1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
