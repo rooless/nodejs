@@ -1,5 +1,6 @@
 // var createError = require('http-errors');
 const express = require('express');
+const http = require('http');
 const path = require('path');
 const config = require('./config');
 const log = require('./libs/log')(module);
@@ -7,8 +8,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var hbs  = require('express-handlebars');
 
+
 const app = express();
-const port = config.get('port');
+/* const port = config.get('port'); */
+const port = 3000;
+const server = app.listen(port);
+var io = require('socket.io');
+
 
 app.set('port',port)
 app.set('views', path.join(__dirname, 'views'));
@@ -97,6 +103,18 @@ app.get('/canvas', (req, res) => {
     layout: 'layout'
   });
 }); 
+
+app.get('/chat', (req, res) => {
+  res.render("chat", {
+    layout: 'layout'
+  });
+}); 
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
+});
 
 app.listen(port, () => log.info(`Example app listening on port ${port}!`));
 
